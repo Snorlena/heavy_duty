@@ -113,7 +113,8 @@ def get_tasks():
         3: "Kursadmin",
         4: "Frånvaro",
         5: "CI",
-        6: "Kontohantering"    }
+        6: "Kontohantering",
+    }
     return tasks
 
 
