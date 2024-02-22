@@ -85,8 +85,8 @@ class TimeTrack:
         formatted_rows = [(row[0], str(timedelta(seconds=row[1]))) for row in rows]
 
         # Print the results using tabulate
-        headers = ["Task", "Total Time (HH:MM)"]
-        print(tabulate(formatted_rows, headers=headers, tablefmt="grid"))
+        headers = ["Task", "Total Time (HH:MM:SS)"]
+        print(tabulate(formatted_rows, headers=headers, tablefmt="grid",colalign=("left", "right")))
 
     def exit(self):
         """Function to close connection to database"""
@@ -106,15 +106,11 @@ def show_tasks():
 
 def get_tasks():
     """Function that holds all tasks"""
-    tasks = {
-        0: "Exit",
-        1: "Linux Server",
-        2: "VFU",
-        3: "Kursadmin",
-        4: "Frånvaro",
-        5: "CI",
-        6: "Kontohantering",
-    }
+
+    with open("tasks", "r") as file:
+
+        tasks = {0: "Exit", **{i: line.strip() for i, line in enumerate(file, start=1) if line.strip()}}
+
     return tasks
 
 
